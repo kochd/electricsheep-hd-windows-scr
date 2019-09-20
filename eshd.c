@@ -78,6 +78,7 @@ int main(int argc, char *argv[])
   check_error(mpv_set_option_string(ctx, "osc", "no"));
   check_error(mpv_set_option_string(ctx, "input-default-bindings", "no"));
   check_error(mpv_set_option_string(ctx, "input-vo-keyboard", "yes"));
+  check_error(mpv_set_option_string(ctx, "loop-playlist", "inf"));
   check_error(mpv_set_option_string(ctx, "input-conf", mpvinputconf));
   check_error(mpv_set_option(ctx, "wid", MPV_FORMAT_INT64, &wid));
 

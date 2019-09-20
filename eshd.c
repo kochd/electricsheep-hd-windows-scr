@@ -19,17 +19,18 @@ int main(int argc, char *argv[])
   int i;
   int64_t wid;
   
-  if (argv[1] == "/c") {
+  if (strncmp(argv[1],"/c", 2) == 0) {
     exit(0);
   }
 
-  if (argv[2]) {
-    puts("preview2");
-    puts(argv[2]);
-    wid = argv[2];
-    puts(wid);
+  if (strncmp(argv[1],"/p", 2) == 0) {
+    exit(0);
+    /* puts("preview2");   */
+    /* int64_t wid; */
+    /* wid = (int64_t)argv[2]; */
+    /* puts(argv[2]); */
   }
-    
+
   for(i=1;i<argc-1;i++) {
     puts(argv[i]);
   }
@@ -62,6 +63,7 @@ int main(int argc, char *argv[])
   strcat(m3u, "\\movies\\eshd.m3u");
   puts(m3u);
 
+
   mpv_handle *ctx = mpv_create();
   if (!ctx) {
     printf("failed creating context\n");
@@ -70,7 +72,6 @@ int main(int argc, char *argv[])
 
   strcpy(mpvinputconf, installpath);
   strcat(mpvinputconf, "\\mpv-input.conf");
-  
   check_error(mpv_set_option_string(ctx, "fullscreen", "yes"));
   check_error(mpv_set_option_string(ctx, "panscan", "1"));
   check_error(mpv_set_option_string(ctx, "stop-screensaver", "no"));

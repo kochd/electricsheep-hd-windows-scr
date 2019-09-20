@@ -6,8 +6,9 @@ This is a writedown from memory. It might be lacking some crucial steps:
 
 - Install MSYS2 (http://www.msys2.org/)
 - start MSYS2
-- pacman -S git mingw-w64-x86_64-gcc mingw-w64-x86_64-mpv
+- pacman -S git zip mingw-w64-x86_64-gcc mingw-w64-x86_64-mpv
 - download mpv _dev_ build (https://mpv.srsfckn.biz/)
 - sync include dir from dev build to $MSYS/usr/include
+- copy mpv-1.dll from dev build to build/ dir
 - switch to mingw64.exe
 - run ./build.sh

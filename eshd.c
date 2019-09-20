@@ -38,10 +38,12 @@ int main(int argc, char *argv[])
   char installpath[255];
   char installpathcp[255];
   char m3u[255];
+  char play[255];
+  char play2[255] = "\"";
   char mpvinputconf[255];
   DWORD BufferSize = BUFFER;
   RegGetValue(HKEY_LOCAL_MACHINE, "SOFTWARE\\Electric Sheep HD\\Settings", "InstallPath", RRF_RT_ANY, NULL, (PVOID)&installpath, &BufferSize);
-  puts(installpath);
+  printf("Installpath: %s\n", installpath);
   FILE *file;
   strcpy(installpathcp, installpath);
   file = fopen(strcat(installpathcp, "\\.active-season"), "r");
@@ -54,14 +56,20 @@ int main(int argc, char *argv[])
   fgets(season, 100, file);
   fclose(file);
   //char m3u[] = "C:\\Program Files (x86)\\Electric Sheep HD\\branches\\G244_W1920_H1080_Q1024_K1C1DF3M\\movies\\eshd.m3u";
-  puts(installpath);
+
   //puts(season);
   //puts(strcat(strcat(installpath, "\\branches\\"), strcat(season, "\\movies\\eshd.m3u")));
   strcpy(m3u, installpath);
   strcat(m3u, "\\branches\\");
   strcat(m3u, season);
   strcat(m3u, "\\movies\\eshd.m3u");
-  puts(m3u);
+  printf("m3u: %s\n", m3u);
+
+  strcpy(play, play2);
+  strcat(play, installpath);
+  strcat(play, "\\play_windows.cmd\" --only-m3u");
+  printf("Running play %s\n", play);
+  system(play);
 
 
   mpv_handle *ctx = mpv_create();

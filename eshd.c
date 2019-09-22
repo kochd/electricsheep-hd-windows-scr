@@ -18,21 +18,19 @@ int main(int argc, char *argv[])
 {
   int i;
   int64_t wid;
-  
-  if (strncmp(argv[1],"/c", 2) == 0) {
-    exit(0);
-  }
 
-  if (strncmp(argv[1],"/p", 2) == 0) {
-    exit(0);
-    /* puts("preview2");   */
-    /* int64_t wid; */
-    /* wid = (int64_t)argv[2]; */
-    /* puts(argv[2]); */
-  }
+  if (argv[1] != 0) {
+    if (strncmp(argv[1],"/c", 2) == 0) {
+      exit(0);
+    }
 
-  for(i=1;i<argc-1;i++) {
-    puts(argv[i]);
+    if (strncmp(argv[1],"/p", 2) == 0) {
+      exit(0);
+    }
+
+    for(i=1;i<argc-1;i++) {
+      puts(argv[i]);
+    }
   }
 
   char installpath[255];

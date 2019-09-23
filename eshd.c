@@ -53,10 +53,6 @@ int main(int argc, char *argv[])
   char season[100];
   fgets(season, 100, file);
   fclose(file);
-  //char m3u[] = "C:\\Program Files (x86)\\Electric Sheep HD\\branches\\G244_W1920_H1080_Q1024_K1C1DF3M\\movies\\eshd.m3u";
-
-  //puts(season);
-  //puts(strcat(strcat(installpath, "\\branches\\"), strcat(season, "\\movies\\eshd.m3u")));
   strcpy(m3u, installpath);
   strcat(m3u, "\\branches\\");
   strcat(m3u, season);
@@ -68,7 +64,6 @@ int main(int argc, char *argv[])
   strcat(play, "\\play_windows.cmd\" --only-m3u");
   printf("Running play %s\n", play);
   system(play);
-
 
   mpv_handle *ctx = mpv_create();
   if (!ctx) {
@@ -92,13 +87,16 @@ int main(int argc, char *argv[])
 
 
   // Done setting up options.
+  printf("Initialize mpv\n");
   check_error(mpv_initialize(ctx));
 
   // Play this file.
+  printf("Loading m3u\n");
   const char *cmd[] = {"loadfile", m3u, NULL};
   check_error(mpv_command(ctx, cmd));
 
   // Let it play, and wait until the user quits.
+  printf("Execute mpv\n");
   while (1) {
     mpv_event *event = mpv_wait_event(ctx, 10000);
     printf("event: %s\n", mpv_event_name(event->event_id));
